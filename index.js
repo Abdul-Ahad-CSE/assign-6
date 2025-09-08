@@ -1,7 +1,11 @@
+
+// Plany category function
 const loadCategories = () => {
     fetch("https://openapi.programming-hero.com/api/categories")
         .then((res) => res.json())
-        .then((json) => displayCategories(json.categories));
+        .then((json) => {      
+            displayCategories(json.categories);
+        });
 };
 
 const displayCategories=(categories) => {
@@ -15,9 +19,9 @@ const displayCategories=(categories) => {
         //console.log(category);
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-        <button 
+        <button id = "category-btn-${category.id}"
             onclick="plantByCategory(${category.id})" 
-                class="">
+                class="btn-neutral cate-btn">
                         ${category.category_name}
                             </button>
         `;
@@ -27,6 +31,7 @@ const displayCategories=(categories) => {
 };
 loadCategories();
 
+//Load all tree function
 const loadAllTree = () => {
     fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
@@ -53,7 +58,7 @@ const displayAllTree=(plants) =>{
 
             <!-- Card Content -->
             <div class="mt-4">
-                <h2 class="text-xl font-bold text-gray-900">${plant.name}</h2>
+                <button onclick="my_modal_5.showModal()" class="text-xl btn font-bold text-gray-900">${plant.name}</button>
                 <p class="text-sm text-gray-600 mt-1 leading-relaxed">
                     ${plant.description}
                 </p>
@@ -84,12 +89,18 @@ const displayAllTree=(plants) =>{
 loadAllTree();
 
 
-
+// Plant by Category function
 const plantByCategory = (id) => {
     const url =`https://openapi.programming-hero.com/api/category/${id}`;
     fetch(url)
         .then((res) => res.json())
-        .then(json => displayPlantByCategory(json.plants));
+        .then(json => {
+            removeActive();
+            const clickbtn = document.getElementById(`category-btn-${id}`)
+            //console.log(clickbtn);
+            clickbtn.classList.add("active");
+            displayPlantByCategory(json.plants)
+        });
 };
 
 const displayPlantByCategory = (plants) =>{
@@ -112,7 +123,7 @@ const displayPlantByCategory = (plants) =>{
 
             <!-- Card Content -->
             <div class="mt-4">
-                <h2 class="text-xl font-bold text-gray-900">${plant.name}</h2>
+                <button onclick="my_modal_5.showModal()" class="text-xl btn font-bold text-gray-900">${plant.name}</button>
                 <p class="text-sm text-gray-600 mt-1 leading-relaxed">
                     ${plant.description}
                 </p>
@@ -140,3 +151,14 @@ const displayPlantByCategory = (plants) =>{
         displayTree.append(plantDiv);
     }
 }
+
+
+// Active status in the category choose:
+const removeActive = () => {
+    const cateBtn = document.querySelectorAll(".cate-btn");
+    cateBtn.forEach(btn => btn.classList.remove("active"));
+};
+
+
+
+

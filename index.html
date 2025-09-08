@@ -17,6 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <section class="nav">
@@ -65,31 +66,26 @@
       </div>
     </section>
     <section class="w-full">
-        <!-- Banner Container -->
-        <!-- The parent div has a relative position to act as a container for the absolutely positioned images. -->
-        <!-- The height is now responsive: h-80 on mobile and h-96 on medium screens and up. -->
+        
         <div class="relative w-full h-80 md:h-60 bg-[#E0F2E9] overflow-hidden flex items-center justify-center">
             
-            <!-- Left Image -->
-            <!-- This image is hidden on mobile (hidden) and shown on medium screens and up (md:block). -->
+            
             <img 
                 src="assets/hero-leaf1.png" 
                 alt="A decorative leaf on the left side of the banner" 
                 class="hidden md:block absolute left-0 top-0 h-full w-auto object-cover opacity-90"
             >
 
-            <!-- Right Image -->
-            <!-- This image is hidden on mobile (hidden) and shown on medium screens and up (md:block). -->
+            
             <img 
                 src="assets/hero-leaf2.png" 
                 alt="A decorative leaf on the right side of the banner" 
                 class="hidden md:block absolute right-0 top-0 h-full w-auto object-cover opacity-90"
             >
             
-            <!-- Centered Text Content -->
-            <!-- The z-10 ensures this content stays above the images. Now a flex container to center the logo. -->
+            
             <div class="relative z-10 text-center text-[#21543A] px-6 sm:px-8 flex flex-col items-center">
-                <!-- Logo Image - Visible on mobile, hidden on desktop (md:hidden). You can change h-16/w-16 -->
+           
                 <img 
                     src="assets/earth-day-icon.png" 
                     alt="Your Logo" 
@@ -119,7 +115,7 @@
         <div class="flex flex-col w-4/20">
           <div class="">
           <p class=" font-bold text-2xl mb-5">Categories</p>
-       <button class="mb-3" onclick="loadAllTree()" >All Tree</button>
+       <button id="0" class="mb-3 active cate-btn" onclick="loadAllTree()"  >All Tree</button>
         </div>
         <div id="plant-categories" class="bg-slate-00 h-100  space-y-3">
          
@@ -135,6 +131,23 @@
           
         </div>
       </div>
+    </section>
+
+    <section>
+      <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
     </section>
 
     <script src="index.js"></script>
